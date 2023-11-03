@@ -130,8 +130,8 @@ const HomePage = () => {
                     <h1
                       className={
                         e.status === "finished"
-                          ? "md:text-xl text-[13px] line-through font-medium text-start truncate flex-1"
-                          : "md:text-xl text-[13px] font-medium text-start truncate flex-1"
+                          ? "md:text-xl text-[13px] line-through font-medium text-start  flex-1"
+                          : "md:text-xl text-[13px] font-medium text-start  flex-1"
                       }
                     >
                       {e.description}
