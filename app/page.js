@@ -96,9 +96,12 @@ export default function Home() {
                   )}
                 </div>
               </div>
-              <p className="text-sky-900 underline cursor-pointer">
+              <Link
+                href="forgotPassword"
+                className="text-sky-900 underline cursor-pointer"
+              >
                 forgot password?
-              </p>
+              </Link>
             </div>
 
             <button className="bg-sky-400 w-24 px-2 rounded-md font-medium text-[#ffffff] py-1.5 hover:bg-sky-500">
