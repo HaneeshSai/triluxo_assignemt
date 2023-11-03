@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { useRouter } from "next/navigation";
+import LoadingSpin from "react-loading-spin";
 
 const Signup = () => {
   const { push } = useRouter();
@@ -17,6 +18,7 @@ const Signup = () => {
   const [password, setpassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [togglePassword, setTogglePassword] = useState("password");
+  const [isloading, setIsLoading] = useState(false);
 
   const SubmitSignUp = async (e) => {
     e.preventDefault();
@@ -31,6 +33,7 @@ const Signup = () => {
     } else if (displayName.length < 4) {
       toast.error("display name should be atleast 4 characters");
     } else {
+      setIsLoading(true);
       createUserWithEmailAndPassword(auth, email, password)
         .then(async (userCreds) => {
           const user = userCreds.user;
@@ -41,8 +44,8 @@ const Signup = () => {
           push("/app/user");
         })
         .catch((error) => {
-          console.log(error.code);
           if (error.code === "auth/email-already-in-use") {
+            setIsLoading(false);
             toast.error(
               "This email already Exists Please use a different email"
             );
@@ -54,6 +57,11 @@ const Signup = () => {
   return (
     <>
       <Toaster />
+      {isloading ? (
+        <div className="absolute top-0 w-screen flex justify-center">
+          <LoadingSpin />{" "}
+        </div>
+      ) : null}
       <div className="h-screen flex items-center justify-center w-screen">
         <div className="flex Shadow md:flex-row flex-col item-center">
           <form

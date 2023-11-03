@@ -7,11 +7,13 @@ import { onValue, ref, remove, set, update } from "firebase/database";
 import { RiDeleteBin2Line } from "react-icons/ri";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
+import LoadingSpin from "react-loading-spin";
 
 const HomePage = () => {
   const { push } = useRouter();
   const [todos, setTodos] = useState([]);
   const [currentTodo, setCurrentTodo] = useState("");
+  const [isloading, setIsLoading] = useState(false);
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -52,6 +54,7 @@ const HomePage = () => {
   };
 
   const signout = () => {
+    setIsLoading(true);
     signOut(auth).then(() => {
       push("/");
     });
@@ -76,6 +79,11 @@ const HomePage = () => {
   return (
     <>
       <div className=" w-screen flex flex-col items-center md:px-32 px-2 py-12">
+        {isloading ? (
+          <div className="absolute top-0 w-screen flex justify-center">
+            <LoadingSpin />{" "}
+          </div>
+        ) : null}
         <div className="flex justify-between w-full">
           <p className="text-xl pb-2">
             Welcome back {auth.currentUser?.displayName}

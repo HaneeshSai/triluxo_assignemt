@@ -6,12 +6,14 @@ import toast, { Toaster } from "react-hot-toast";
 import { auth } from "./firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
+import LoadingSpin from "react-loading-spin";
 
 export default function Home() {
   const { push } = useRouter();
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const [togglePassword, setTogglePassword] = useState("password");
+  const [isloading, setIsLoading] = useState(false);
 
   const SubmitLogin = async (e) => {
     e.preventDefault();
@@ -24,6 +26,7 @@ export default function Home() {
         "Invalid Password \n1) A password must contain atleast 8 characters\n2) A password must contain atleast one UPPERCASE letter and a lowercase letter\n3) A password must contain atleast one number"
       );
     } else {
+      setIsLoading(true);
       signInWithEmailAndPassword(auth, email, password)
         .then((userCreds) => {
           const user = userCreds.user;
@@ -32,6 +35,7 @@ export default function Home() {
         })
         .catch((error) => {
           if (error.code === "auth/invalid-login-credentials") {
+            setIsLoading(false);
             toast.error("Invalid Login Credentials");
           }
         });
@@ -39,6 +43,11 @@ export default function Home() {
   };
   return (
     <main className="w-screen px-2">
+      {isloading ? (
+        <div className="absolute top-0 w-screen flex justify-center">
+          <LoadingSpin />{" "}
+        </div>
+      ) : null}
       <Toaster />
       <div className="h-screen flex items-center justify-center w-full">
         <div className="flex md:flex-row flex-col Shadow item-center">
