@@ -90,7 +90,7 @@ const HomePage = () => {
         <h1 className="font-bold text-4xl text-sky-800 tracking-wide">
           Todo List
         </h1>
-        <form className="md:w-3/4 w-full mx-2 md:mx-0 my-5 flex gap-5 items-center">
+        <form className="md:w-3/4 w-[90%] mx-2 md:mx-0 my-5 flex gap-5 items-center">
           <input
             type="text"
             placeholder="Add a Todo..."
