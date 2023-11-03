@@ -139,8 +139,10 @@ const HomePage = () => {
                       <input
                         type="checkbox"
                         className="pb-2 cursor-pointer"
-                        onClick={() => updateTodo(e)}
+                        onChange={() => updateTodo(e)}
+                        checked={e.status === "finished"}
                       />
+
                       <RiDeleteBin2Line
                         size={25}
                         color="red"
