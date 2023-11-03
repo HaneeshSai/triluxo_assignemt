@@ -21,7 +21,7 @@ const ForgotPassword = () => {
       .catch((error) => console.log(error));
   };
   return (
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="w-full h-full mx-4 flex justify-center items-center">
       <Toaster />
       <div className="text-2xl items-center  flex flex-col gap-8 Shadow px-3 py-4">
         <AiOutlineMail size={60} />
