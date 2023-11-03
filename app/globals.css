@@ -4,8 +4,8 @@
 
 body {
   background-image: linear-gradient(to bottom left, rgb(230, 230, 230), rgb(180, 177, 177));
-  height: 100vh;
-  width: 100vh;
+  height: 100%;
+  width: 100%;
   background-repeat: none;
   background-size: cover;
   overflow: hidden;
